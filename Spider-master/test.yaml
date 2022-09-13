@@ -1,0 +1,17 @@
+tests:
+  - name: "GET /"
+    url: "http://localhost:8000/"
+    request_headers:
+      - Connection: "close"
+      - Coucou: "hibou"
+    response_headers:
+      - Connection: "close"
+      - Content-Length: 7
+  - name: "HTTP-0w0"
+    url: "http://localhost:8000/"
+    request_headers:
+      - Connection: "close"
+      - Coucou: "hibou"
+    response_headers:
+      - Connection: "close"
+      - Content-Length: 7

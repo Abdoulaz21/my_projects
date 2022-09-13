@@ -1,0 +1,39 @@
+{
+"vhosts": [
+{
+"ip": "127.0.0.1",
+"port": 8000,
+"server_name": "localhost",
+"root": ".",
+"default_file": "tests/config_file.json"
+},
+{
+"ip": "127.0.0.1",
+"port": 8004,
+"server_name": "localhost",
+"root": ".",
+"ssl_cert": "tests/certs/localhost.pem",
+"ssl_key": "tests/certs/localhost-key.pem",
+"default_file": "tests/config_file.json"
+},
+{
+"ip": "127.0.0.2",
+"port": 8004,
+"server_name": "localhost2",
+"root": ".",
+"ssl_cert": "tests/certs/localhost2.pem",
+"ssl_key": "tests/certs/localhost2-key.pem",
+"default_file": "tests/config_file.json"
+},
+{
+"ip": "127.0.0.1",
+"port": 8008,
+"server_name": "default_server",
+"root": ".",
+"auth_basic": "Please log in to default_server!",
+"auth_basic_users": [
+    "admin-spider"
+],
+"default_vhost": true 
+} ]
+}

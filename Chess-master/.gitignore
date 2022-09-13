@@ -1,0 +1,9 @@
+build/
+.venv/
+uml.png
+*.o
+*.so
+*.DS_Store
+.pre-commit-config.yaml
+venv/
+tools/__pycache__/

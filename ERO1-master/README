@@ -1,0 +1,28 @@
+Instructions d’installation et d’exécution
+Pré-requis
+1-Conda
+Il faut d'abord télécharger le gestionnaire de paquet Conda sur le site officiel et l'exécuter.
+Ensuite, il faut mettre à jour conda dans le menu Windows avec la commande suivante:
+$ conda install conda
+
+2-OSMnx
+Déplacez vous dans le disque où est installé python.
+Enfin, vous pourrez installer OSMnx, toujours avec les commandes suivantes:
+$ conda config --prepend channels conda-forge
+$ conda create -n ox --strict-channel-priority osmnx
+
+Pour utiliser OSMnx , commencez par activer votre env :
+$ conda activate ox
+
+Ensuite pour lancer la demo de la solution, exécuter le fichier demo.py à la racine du projet:
+$ python demo.py
+
+Remarque: Il faudra fermer la fenêtre d'affichage du graphe pour pouvoir continuer l'exécution du script de la solution.
+
+Un descriptif de la structure de votre rendu
+- real/ : sous-arborescence consacrée à l'étude du cas réel de la ville de Montréal
+- theory/ : sous-arborescence conscacrée à l'étude du cas théorique
+- demo.py : démonstration de la solution
+- LINKS : lien vers la vidéo de présentation de la solution
+- AUTHORS : liste des membres du groupe
+- EROtique.pdf : pdf contenant la synthèse des réflexions du groupe
