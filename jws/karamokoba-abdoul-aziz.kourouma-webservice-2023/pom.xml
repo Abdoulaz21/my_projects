@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.epita.student.webservice</groupId>
+    <artifactId>webservice</artifactId>
+    <version>1.0</version>
+
+
+    <properties>
+        <versions.java>16</versions.java>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>${versions.java}</maven.compiler.source>
+        <maven.compiler.target>${versions.java}</maven.compiler.target>
+
+        <versions.archunit>0.17.0</versions.archunit>
+        <versions.assertj>3.15.0</versions.assertj>
+        <versions.h2>1.4.200</versions.h2>
+        <versions.jackson>2.10.1</versions.jackson>
+        <versions.jooq>3.12.3</versions.jooq>
+        <versions.junit>5.7.0</versions.junit>
+        <versions.logback>1.2.3</versions.logback>
+        <versions.spark>2.8.0</versions.spark>
+        <versions.slf4j>1.8.0-beta4</versions.slf4j>
+
+        <!-- Maven versions. -->
+        <versions.maven.compiler>3.8.1</versions.maven.compiler>
+        <versions.maven.shade>3.2.2</versions.maven.shade>
+        <versions.maven.jar>3.2.0</versions.maven.jar>
+        <versions.maven.antrun>1.1</versions.maven.antrun>
+        <versions.maven.resources>3.1.0</versions.maven.resources>
+
+        <db.schema>WEBSERVICE</db.schema>
+        <db.url>jdbc:h2:./webservice</db.url>
+        <db.user>sa</db.user>
+        <db.password/>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.sparkjava</groupId>
+            <artifactId>spark-core</artifactId>
+            <version>${versions.spark}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq</artifactId>
+            <version>${versions.jooq}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${versions.jackson}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-parameter-names</artifactId>
+            <version>${versions.jackson}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${versions.logback}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${versions.h2}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${versions.assertj}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tngtech.archunit</groupId>
+            <artifactId>archunit-junit5</artifactId>
+            <version>${versions.archunit}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>${versions.maven.antrun}</version>
+                <executions>
+                    <execution>
+                        <id>create-yakamon-database</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <path id="h2.classpath">
+                                    <path refid="maven.compile.classpath"/>
+                                </path>
+                                <echo message="########### Creating Yakamon Database ##############"/>
+                                <sql driver="org.h2.Driver" url="jdbc:h2:./webservice" userid="sa" password=""
+                                     autocommit="true" onerror="continue">
+                                    <classpath>
+                                        <path refid="h2.classpath"/>
+                                    </classpath>
+                                    <fileset file="${basedir}/src/main/resources/ddl.sql"/>
+                                </sql>
+                                <echo message="##################### DONE ########################"/>
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq-codegen-maven</artifactId>
+                <version>${versions.jooq}</version>
+
+                <executions>
+                    <execution>
+                        <id>jooq-codegen</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Configure the database connection here -->
+                            <jdbc>
+                                <driver>org.h2.Driver</driver>
+                                <url>${db.url}</url>
+                                <user>${db.user}</user>
+                                <password>${db.password}</password>
+                            </jdbc>
+
+                            <generator>
+                                <name>org.jooq.codegen.JavaGenerator</name>
+
+                                <database>
+                                    <!-- The database type. The format here is: org.jooq.meta.[database].[database]Database -->
+                                    <name>org.jooq.meta.h2.H2Database</name>
+                                    <inputSchema>${db.schema}</inputSchema>
+                                    <includes>.*</includes>
+                                </database>
+
+                                <target>
+                                    <packageName>com.epita.assistants.ddl</packageName>
+                                    <directory>./src/main/java</directory>
+                                </target>
+                            </generator>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-shade-plugin</artifactId>
+                    <version>${versions.maven.shade}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${versions.maven.jar}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${versions.maven.compiler}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${versions.maven.resources}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>

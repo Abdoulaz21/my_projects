@@ -1,0 +1,602 @@
+[ {
+  "basePath" : "/zone",
+  "endpoints" : [ {
+    "method" : "GET",
+    "path" : "/:name/currentYakamons",
+    "description" : "Get a list of Yakamons currently in the Zone.",
+    "parameters" : [ {
+      "name" : ":name",
+      "type" : "STRING"
+    } ],
+    "request" : null,
+    "response" : {
+      "typeName" : "Response Object (DTO)",
+      "fields" : [ {
+        "name" : "yakamonIds",
+        "type" : "List<UUID>"
+      } ]
+    }
+  }, {
+    "method" : "GET",
+    "path" : "/:name/possibleYakamons",
+    "description" : "Get a list of Yakamons possible in the Zone.",
+    "parameters" : [ {
+      "name" : ":name",
+      "type" : "STRING"
+    } ],
+    "request" : null,
+    "response" : {
+      "typeName" : "Response Object (DTO)",
+      "fields" : [ {
+        "name" : "yakadexIds",
+        "type" : "List<String>"
+      } ]
+    }
+  }, {
+    "method" : "GET",
+    "path" : "/",
+    "description" : "Get a list of the Zones.",
+    "parameters" : [ ],
+    "request" : null,
+    "response" : {
+      "typeName" : "Response Object (DTO)",
+      "fields" : [ {
+        "name" : "zones",
+        "type" : {
+          "typeName" : "List<ELEMENT_TYPE>",
+          "internalTypes" : {
+            "ELEMENT_TYPE" : {
+              "typeName" : "Object",
+              "fields" : [ {
+                "name" : "name",
+                "type" : "String"
+              } ]
+            }
+          }
+        }
+      } ]
+    }
+  }, {
+    "method" : "GET",
+    "path" : "/:name",
+    "description" : "Get the information of the specified Zone.",
+    "parameters" : [ {
+      "name" : ":name",
+      "type" : "STRING"
+    } ],
+    "request" : null,
+    "response" : {
+      "typeName" : "Response Object (DTO)",
+      "fields" : [ {
+        "name" : "name",
+        "type" : "String"
+      } ]
+    }
+  } ]
+}, {
+  "basePath" : "/type",
+  "endpoints" : [ {
+    "method" : "GET",
+    "path" : "/",
+    "description" : "Get a list of the Types.",
+    "parameters" : [ ],
+    "request" : null,
+    "response" : {
+      "typeName" : "Response Object (DTO)",
+      "fields" : [ {
+        "name" : "types",
+        "type" : {
+          "typeName" : "List<ELEMENT_TYPE>",
+          "internalTypes" : {
+            "ELEMENT_TYPE" : {
+              "typeName" : "Object",
+              "fields" : [ {
+                "name" : "name",
+                "type" : "String"
+              } ]
+            }
+          }
+        }
+      } ]
+    }
+  }, {
+    "method" : "GET",
+    "path" : "/:name",
+    "description" : "Get the information of the specified Type.",
+    "parameters" : [ {
+      "name" : ":name",
+      "type" : "STRING"
+    } ],
+    "request" : null,
+    "response" : {
+      "typeName" : "Response Object (DTO)",
+      "fields" : [ {
+        "name" : "name",
+        "type" : "String"
+      } ]
+    }
+  } ]
+}, {
+  "basePath" : "/move",
+  "endpoints" : [ {
+    "method" : "GET",
+    "path" : "/",
+    "description" : "Get a list of all Moves.",
+    "parameters" : [ ],
+    "request" : null,
+    "response" : {
+      "typeName" : "Response Object (DTO)",
+      "fields" : [ {
+        "name" : "moves",
+        "type" : {
+          "typeName" : "List<ELEMENT_TYPE>",
+          "internalTypes" : {
+            "ELEMENT_TYPE" : {
+              "typeName" : "Object",
+              "fields" : [ {
+                "name" : "name",
+                "type" : "String"
+              } ]
+            }
+          }
+        }
+      } ]
+    }
+  }, {
+    "method" : "GET",
+    "path" : "/:name",
+    "description" : "Get the information of the specified Move.",
+    "parameters" : [ {
+      "name" : ":name",
+      "type" : "STRING"
+    } ],
+    "request" : null,
+    "response" : {
+      "typeName" : "Response Object (DTO)",
+      "fields" : [ {
+        "name" : "name",
+        "type" : "String"
+      } ]
+    }
+  } ]
+}, {
+  "basePath" : "/yakadex",
+  "endpoints" : [ {
+    "method" : "GET",
+    "path" : "/",
+    "description" : "Get a list of entries of the Yakadex",
+    "parameters" : [ ],
+    "request" : null,
+    "response" : {
+      "typeName" : "Response Object (DTO)",
+      "fields" : [ {
+        "name" : "yakadexEntries",
+        "type" : {
+          "typeName" : "List<ELEMENT_TYPE>",
+          "internalTypes" : {
+            "ELEMENT_TYPE" : {
+              "typeName" : "Object",
+              "fields" : [ {
+                "name" : "id",
+                "type" : "String"
+              }, {
+                "name" : "previousEvolutionYakadexId",
+                "type" : "String"
+              }, {
+                "name" : "nextEvolutionYakadexId",
+                "type" : "String"
+              }, {
+                "name" : "moveIds",
+                "type" : "List<String>"
+              }, {
+                "name" : "typeIds",
+                "type" : "List<String>"
+              }, {
+                "name" : "zoneIds",
+                "type" : "List<String>"
+              } ]
+            }
+          }
+        }
+      } ]
+    }
+  }, {
+    "method" : "GET",
+    "path" : "/:id",
+    "description" : "Get one specified entry in the Yakadex",
+    "parameters" : [ {
+      "name" : ":id",
+      "type" : "STRING"
+    } ],
+    "request" : null,
+    "response" : {
+      "typeName" : "Response Object (DTO)",
+      "fields" : [ {
+        "name" : "id",
+        "type" : "String"
+      }, {
+        "name" : "previousEvolutionYakadexId",
+        "type" : "String"
+      }, {
+        "name" : "nextEvolutionYakadexId",
+        "type" : "String"
+      }, {
+        "name" : "moveIds",
+        "type" : "List<String>"
+      }, {
+        "name" : "typeIds",
+        "type" : "List<String>"
+      }, {
+        "name" : "zoneIds",
+        "type" : "List<String>"
+      } ]
+    }
+  } ]
+}, {
+  "basePath" : "/trainer",
+  "endpoints" : [ {
+    "method" : "GET",
+    "path" : "/",
+    "description" : "Get a list of the Trainers.",
+    "parameters" : [ ],
+    "request" : null,
+    "response" : {
+      "typeName" : "Response Object (DTO)",
+      "fields" : [ {
+        "name" : "trainers",
+        "type" : {
+          "typeName" : "List<ELEMENT_TYPE>",
+          "internalTypes" : {
+            "ELEMENT_TYPE" : {
+              "typeName" : "Object",
+              "fields" : [ {
+                "name" : "uuid",
+                "type" : "UUID"
+              }, {
+                "name" : "name",
+                "type" : "String"
+              } ]
+            }
+          }
+        }
+      } ]
+    }
+  }, {
+    "method" : "GET",
+    "path" : "/:uuid",
+    "description" : "Get the information of the specified Trainer.",
+    "parameters" : [ {
+      "name" : ":uuid",
+      "type" : "UUID"
+    } ],
+    "request" : null,
+    "response" : {
+      "typeName" : "Response Object (DTO)",
+      "fields" : [ {
+        "name" : "uuid",
+        "type" : "UUID"
+      }, {
+        "name" : "name",
+        "type" : "String"
+      } ]
+    }
+  }, {
+    "method" : "PUT",
+    "path" : "/",
+    "description" : "Create a new Trainer.",
+    "parameters" : [ ],
+    "request" : {
+      "typeName" : "Request Object (DTO)",
+      "fields" : [ {
+        "name" : "uuid",
+        "type" : "UUID"
+      }, {
+        "name" : "name",
+        "type" : "String"
+      } ]
+    },
+    "response" : {
+      "typeName" : "Response Object (DTO)",
+      "fields" : [ {
+        "name" : "uuid",
+        "type" : "UUID"
+      }, {
+        "name" : "name",
+        "type" : "String"
+      } ]
+    }
+  }, {
+    "method" : "PATCH",
+    "path" : "/:uuid",
+    "description" : "Rename the specified Trainer.",
+    "parameters" : [ {
+      "name" : ":uuid",
+      "type" : "UUID"
+    } ],
+    "request" : {
+      "typeName" : "Request Object (DTO)",
+      "fields" : [ {
+        "name" : "name",
+        "type" : "String"
+      } ]
+    },
+    "response" : {
+      "typeName" : "Response Object (DTO)",
+      "fields" : [ ]
+    }
+  }, {
+    "method" : "DELETE",
+    "path" : "/:uuid",
+    "description" : "Delete the specified Trainer. The deletion must be possible only if the trainer has released all of his Yakamons.",
+    "parameters" : [ {
+      "name" : ":uuid",
+      "type" : "UUID"
+    } ],
+    "request" : null,
+    "response" : {
+      "typeName" : "Response Object (DTO)",
+      "fields" : [ ]
+    }
+  }, {
+    "method" : "GET",
+    "path" : "/:uuid/yakamons",
+    "description" : "Get the Yakamons of the specified Trainer.",
+    "parameters" : [ {
+      "name" : ":uuid",
+      "type" : "UUID"
+    } ],
+    "request" : null,
+    "response" : {
+      "typeName" : "Response Object (DTO)",
+      "fields" : [ {
+        "name" : "trainerYakamonIds",
+        "type" : "List<UUID>"
+      } ]
+    }
+  }, {
+    "method" : "POST",
+    "path" : "/:uuid/yakamons/:yakamon",
+    "description" : "Add a specified yakamon to the specified Trainer",
+    "parameters" : [ {
+      "name" : ":uuid",
+      "type" : "UUID"
+    }, {
+      "name" : ":yakamon",
+      "type" : "UUID"
+    } ],
+    "request" : null,
+    "response" : {
+      "typeName" : "Response Object (DTO)",
+      "fields" : [ ]
+    }
+  }, {
+    "method" : "POST",
+    "path" : "/:uuid/free/:yakamon/:zoneName",
+    "description" : "Free a Trainer's Yakamon to a specified zone.",
+    "parameters" : [ {
+      "name" : ":uuid",
+      "type" : "UUID"
+    }, {
+      "name" : ":yakamon",
+      "type" : "UUID"
+    }, {
+      "name" : ":zoneName",
+      "type" : "STRING"
+    } ],
+    "request" : null,
+    "response" : {
+      "typeName" : "Response Object (DTO)",
+      "fields" : [ ]
+    }
+  } ]
+}, {
+  "basePath" : "/yakamon",
+  "endpoints" : [ {
+    "method" : "GET",
+    "path" : "/",
+    "description" : "Get all Yakamons.",
+    "parameters" : [ ],
+    "request" : null,
+    "response" : {
+      "typeName" : "Response Object (DTO)",
+      "fields" : [ {
+        "name" : "yakamons",
+        "type" : {
+          "typeName" : "List<ELEMENT_TYPE>",
+          "internalTypes" : {
+            "ELEMENT_TYPE" : {
+              "typeName" : "Object",
+              "fields" : [ {
+                "name" : "id",
+                "type" : "UUID"
+              }, {
+                "name" : "name",
+                "type" : "String"
+              }, {
+                "name" : "yakadexId",
+                "type" : "String"
+              } ]
+            }
+          }
+        }
+      } ]
+    }
+  }, {
+    "method" : "GET",
+    "path" : "/:id",
+    "description" : "Get one specified Yakamon.",
+    "parameters" : [ {
+      "name" : ":id",
+      "type" : "UUID"
+    } ],
+    "request" : null,
+    "response" : {
+      "typeName" : "Response Object (DTO)",
+      "fields" : [ {
+        "name" : "id",
+        "type" : "UUID"
+      }, {
+        "name" : "name",
+        "type" : "String"
+      }, {
+        "name" : "yakadexId",
+        "type" : "String"
+      } ]
+    }
+  }, {
+    "method" : "PUT",
+    "path" : "/",
+    "description" : "Create a new Yakamon (The name field is nullable).",
+    "parameters" : [ ],
+    "request" : {
+      "typeName" : "Request Object (DTO)",
+      "fields" : [ {
+        "name" : "id",
+        "type" : "UUID"
+      }, {
+        "name" : "name",
+        "type" : "String"
+      }, {
+        "name" : "yakadexId",
+        "type" : "String"
+      }, {
+        "name" : "zoneId",
+        "type" : "String"
+      } ]
+    },
+    "response" : {
+      "typeName" : "Response Object (DTO)",
+      "fields" : [ {
+        "name" : "id",
+        "type" : "UUID"
+      }, {
+        "name" : "name",
+        "type" : "String"
+      }, {
+        "name" : "yakadexId",
+        "type" : "String"
+      }, {
+        "name" : "zoneId",
+        "type" : "String"
+      } ]
+    }
+  }, {
+    "method" : "PATCH",
+    "path" : "/:id/rename",
+    "description" : "Rename the specified Yakamon (the newName field is nullable).",
+    "parameters" : [ {
+      "name" : ":id",
+      "type" : "UUID"
+    } ],
+    "request" : {
+      "typeName" : "Request Object (DTO)",
+      "fields" : [ {
+        "name" : "newName",
+        "type" : "String"
+      } ]
+    },
+    "response" : {
+      "typeName" : "Response Object (DTO)",
+      "fields" : [ {
+        "name" : "id",
+        "type" : "UUID"
+      }, {
+        "name" : "name",
+        "type" : "String"
+      }, {
+        "name" : "yakadexId",
+        "type" : "String"
+      } ]
+    }
+  }, {
+    "method" : "PATCH",
+    "path" : "/:id/evolve",
+    "description" : "Evolve the specified Yakamon if it is possible.",
+    "parameters" : [ {
+      "name" : ":id",
+      "type" : "UUID"
+    } ],
+    "request" : null,
+    "response" : {
+      "typeName" : "Response Object (DTO)",
+      "fields" : [ {
+        "name" : "id",
+        "type" : "UUID"
+      }, {
+        "name" : "name",
+        "type" : "String"
+      }, {
+        "name" : "yakadexId",
+        "type" : "String"
+      } ]
+    }
+  }, {
+    "method" : "DELETE",
+    "path" : "/:id",
+    "description" : "Delete the specified Yakamon.",
+    "parameters" : [ {
+      "name" : ":id",
+      "type" : "UUID"
+    } ],
+    "request" : null,
+    "response" : {
+      "typeName" : "Response Object (DTO)",
+      "fields" : [ ]
+    }
+  } ]
+}, {
+  "basePath" : "/stats",
+  "endpoints" : [ {
+    "method" : "GET",
+    "path" : "/zone/distribution",
+    "description" : "Get a list of distributions of the Zones.",
+    "parameters" : [ ],
+    "request" : null,
+    "response" : {
+      "typeName" : "Response Object (DTO)",
+      "fields" : [ {
+        "name" : "distributions",
+        "type" : {
+          "typeName" : "Map<String,VALUE_TYPE>",
+          "internalTypes" : {
+            "VALUE_TYPE" : {
+              "typeName" : "Map<String,Float>"
+            }
+          }
+        }
+      } ]
+    }
+  }, {
+    "method" : "GET",
+    "path" : "/zone/distribution/:zoneId",
+    "description" : "Get the YakadexId distribution for the specified zone.",
+    "parameters" : [ {
+      "name" : ":zoneId",
+      "type" : "STRING"
+    } ],
+    "request" : null,
+    "response" : {
+      "typeName" : "Response Object (DTO)",
+      "fields" : [ {
+        "name" : "distribution",
+        "type" : "Map<String,Float>"
+      } ]
+    }
+  }, {
+    "method" : "GET",
+    "path" : "/yakamon/top/:topNb",
+    "description" : "Get the top :topNb most frequent YakadexId used by trainer in descending order. The first one being the most used.",
+    "parameters" : [ {
+      "name" : ":topNb",
+      "type" : "INTEGER"
+    } ],
+    "request" : null,
+    "response" : {
+      "typeName" : "Response Object (DTO)",
+      "fields" : [ {
+        "name" : "yakadexIds",
+        "type" : "List<String>"
+      } ]
+    }
+  } ]
+} ]
