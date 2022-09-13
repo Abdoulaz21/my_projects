@@ -1,0 +1,31 @@
+{
+  "serverId" : "17ece0838",
+  "gameRunning" : true,
+  "tick" : 32,
+  "scheduledGameStartTick" : 3600,
+  "scheduledGameEndTick" : 4800,
+  "hordeWave" : 0,
+  "hectorRuns" : 0,
+  "dimension" : {
+    "x" : 64,
+    "y" : 48,
+    "z" : 64
+  },
+  "players" : [ {
+    "name" : "karamokoba-abdoul-aziz.kourouma",
+    "status" : "DEAD",
+    "agentsPerType" : {
+      "pylon" : 2
+    },
+    "blocks" : 1,
+    "minerals" : 0,
+    "biomass" : 250,
+    "achievements" : [ "Oscar Mike", "[EASY] Oscar Mike", "It's Aliiiiivvvve!", "Without You", "Now you see me, now you don't", "[EASY] Hello, world", "Hello, world", "Anywhere Anytime", "Journey to the Center of the Earth" ],
+    "agents" : 2
+  } ],
+  "freeSpace" : 196607,
+  "agentsPerType" : {
+    "pylon" : 2
+  },
+  "agents" : 2
+}
