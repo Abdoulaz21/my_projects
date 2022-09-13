@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.epita.assistants</groupId>
+    <artifactId>singleton</artifactId>
+    <version>1.0</version>
+
+    <properties>
+        <!-- Globals -->
+        <versions.java>16</versions.java>
+        <resource.encoding>utf-8</resource.encoding>
+        <versions.project>1.0-SNAPSHOT</versions.project>
+
+        <!-- Dependencies -->
+        <versions.junit>5.7.0</versions.junit>
+        <versions.archunit>0.17.0</versions.archunit>
+
+        <!-- Maven plugins -->
+        <versions.maven.compiler-plugin>3.8.1</versions.maven.compiler-plugin>
+        <versions.maven.jar-plugin>3.2.0</versions.maven.jar-plugin>
+        <versions.maven.assembly-plugin>2.3</versions.maven.assembly-plugin>
+        <versions.maven.surefire-plugin>3.0.0-M5</versions.maven.surefire-plugin>
+
+        <!-- Inherited and maven configuration -->
+        <project.build.sourceEncoding>${resource.encoding}</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>${resource.encoding}</project.reporting.outputEncoding>
+        <maven.compiler.source>${versions.java}</maven.compiler.source>
+        <maven.compiler.target>${versions.java}</maven.compiler.target>
+        <maven.compiler.parameters>true</maven.compiler.parameters>
+    </properties>
+
+    <dependencies>
+        <!-- Tests -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${versions.junit}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.tngtech.archunit</groupId>
+            <artifactId>archunit-junit5</artifactId>
+            <version>${versions.archunit}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${versions.maven.compiler-plugin}</version>
+                <configuration>
+                    <release>${versions.java}</release>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
+                    <source>${versions.java}</source>
+                    <target>${versions.java}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${versions.maven.jar-plugin}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>${versions.maven.assembly-plugin}</version>
+                <configuration>
+                    <descriptors>
+                        <descriptor>assembly.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${versions.maven.surefire-plugin}</version>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

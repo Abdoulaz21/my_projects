@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/exceptions/exception.iml" filepath="$PROJECT_DIR$/exceptions/exception.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/java-2023-1.2.0-d2-tutorial_files.iml" filepath="$PROJECT_DIR$/.idea/java-2023-1.2.0-d2-tutorial_files.iml" />
+      <module fileurl="file://$PROJECT_DIR$/staticPen/static_final.iml" filepath="$PROJECT_DIR$/staticPen/static_final.iml" />
+    </modules>
+  </component>
+</project>
